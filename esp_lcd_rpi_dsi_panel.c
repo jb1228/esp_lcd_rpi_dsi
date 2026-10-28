@@ -243,13 +243,6 @@ esp_err_t esp_lcd_new_panel_rpi_dsi(esp_lcd_panel_io_handle_t io,
                                             vendor_config->mipi_config.dpi_config, ret_panel), err, TAG,
                       "create MIPI DPI panel failed");
 
-    if (vendor_config->flags.non_burst_video) {
-        // esp_lcd_new_panel_dpi() has just hardcoded burst mode; the video stream is
-        // only switched on later, in the panel's init, so overriding here is safe.
-        mipi_dsi_host_ll_dpi_set_video_burst_type(ctx->hal->host, MIPI_DSI_LL_VIDEO_NON_BURST_WITH_SYNC_PULSES);
-        ESP_LOGI(TAG, "video mode forced to non-burst with sync pulses");
-    }
-
     ctx->del = (*ret_panel)->del;
     ctx->init = (*ret_panel)->init;
     (*ret_panel)->del = panel_rpi_dsi_del;

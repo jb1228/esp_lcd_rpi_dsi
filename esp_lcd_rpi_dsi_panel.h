@@ -27,9 +27,6 @@ typedef struct {
     uint8_t i2c_addr;                /*!< 0 falls back to ESP_LCD_RPI_DSI_ATTINY_ADDR */
     uint32_t i2c_scl_speed_hz;       /*!< 0 falls back to 100 kHz */
     uint8_t brightness;              /*!< 0 falls back to 255 */
-    struct {
-        uint32_t non_burst_video: 1;
-    } flags;
 } esp_lcd_rpi_dsi_vendor_config_t;
 
 /**

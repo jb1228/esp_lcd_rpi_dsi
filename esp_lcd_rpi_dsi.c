@@ -128,8 +128,14 @@ esp_err_t esp_lcd_rpi_dsi_start(const esp_lcd_rpi_dsi_config_t *config,
         .dpi_clk_src = MIPI_DSI_DPI_CLK_SRC_DEFAULT,
         .dpi_clock_freq_mhz = config->dpi_clock_freq_mhz,
         .in_color_format = LCD_COLOR_FMT_RGB888,
+        .video_burst_type = config->flags.non_burst_video
+            ? MIPI_DSI_VIDEO_NON_BURST_WITH_SYNC_PULSES
+            : MIPI_DSI_VIDEO_BURST_WITH_SYNC_PULSES,
         .video_timing = config->timing,
-        .flags.disable_lp = config->flags.disable_lp,
+        .flags = {
+            .disable_lp = config->flags.disable_lp,
+            .disable_frame_ack = true,
+        },
     };
     esp_lcd_rpi_dsi_vendor_config_t vendor_config = {
         .mipi_config = {
@@ -138,7 +144,6 @@ esp_err_t esp_lcd_rpi_dsi_start(const esp_lcd_rpi_dsi_config_t *config,
         },
         .i2c_bus = disp->i2c_bus,
         .brightness = config->brightness,
-        .flags.non_burst_video = config->flags.non_burst_video,
     };
     esp_lcd_panel_dev_config_t panel_dev_config = {
         .reset_gpio_num = -1,
