@@ -132,6 +132,7 @@ typedef struct {
         uint32_t disable_lp: 1;       /*!< Forbid low-power transitions during blanking */
         uint32_t enable_touch: 1;     /*!< Bring the FT5x06 up too, through esp_lcd_touch_ft5x06 */
         uint32_t use_dma2d: 1;        /*!< Let DMA2D do the copy into the frame buffer */
+        uint32_t disable_frame_ack: 1; /*!< Disable frame acknowledgement requests */
     } flags;
 } esp_lcd_rpi_dsi_config_t;
 
@@ -155,6 +156,7 @@ typedef struct {
             .disable_lp = CONFIG_ESP_LCD_RPI_DSI_DISABLE_LP_VAL,             \
             .enable_touch = CONFIG_ESP_LCD_RPI_DSI_TOUCH_VAL,                \
             .use_dma2d = CONFIG_ESP_LCD_RPI_DSI_USE_DMA2D_VAL,               \
+            .disable_frame_ack = true,                                       \
         },                                                                   \
     }
 

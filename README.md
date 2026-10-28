@@ -78,10 +78,12 @@ GPL-2.0-only.
 
 ## Requirements
 
-ESP-IDF v6.0 or newer, ESP32-P4. Pulls in `espressif/esp_lcd_touch_ft5x06` for the
-touch controller.
+ESP-IDF `release/v6.1` or newer with the public DPI `video_burst_type` and
+`disable_frame_ack` fields, ESP32-P4. Pulls in `espressif/esp_lcd_touch_ft5x06` for
+the touch controller.
 
 Verified on an ESP32-P4-Function-EV-Board v1.5.2 (chip revision v1.3) under ESP-IDF
 v6.1, driving a 5" OSOYOO panel v1.1 with firmware revision 2 (`REG_ID` `0xc3`). It
-builds clean on v6.0, but has not been run there. The revision 1 firmware path is
-ported from the kernel driver and has not been run at all.
+uses the public DPI configuration API from `release/v6.1`; v6.0 is no longer
+supported. The revision 1 firmware path is ported from the kernel driver and has
+not been run at all.

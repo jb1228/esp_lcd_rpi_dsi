@@ -17,7 +17,6 @@
 #include "esp_lcd_panel_io.h"
 #include "esp_lcd_mipi_dsi.h"
 #include "hal/mipi_dsi_hal.h"
-#include "hal/mipi_dsi_host_ll.h"
 #include "hal/mipi_dsi_types.h"
 #include "esp_lcd_rpi_dsi_panel.h"
 
@@ -94,10 +93,10 @@ static const rpi_dsi_bridge_cmd_t s_bridge_init[] = {
 
 /* Layout mirror of the private `esp_lcd_dsi_bus_t` from
  * $IDF_PATH/components/esp_lcd/dsi/mipi_dsi_priv.h (IDF v6.1). We only need the
- * HAL context, to emit generic long writes and to override the video mode --
- * neither is reachable through the public esp_lcd API. rpi_dsi_bus_hal() sanity
- * checks the result so a layout change in a future IDF fails loudly here rather
- * than silently scribbling on registers. */
+ * HAL context to emit generic long writes, which are not reachable through the
+ * public esp_lcd API. rpi_dsi_bus_hal() sanity checks the result so a layout
+ * change in a future IDF fails loudly here rather than silently scribbling on
+ * registers. */
 typedef struct {
     int bus_id;
     mipi_dsi_hal_context_t hal;

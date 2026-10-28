@@ -134,7 +134,7 @@ esp_err_t esp_lcd_rpi_dsi_start(const esp_lcd_rpi_dsi_config_t *config,
         .video_timing = config->timing,
         .flags = {
             .disable_lp = config->flags.disable_lp,
-            .disable_frame_ack = true,
+            .disable_frame_ack = config->flags.disable_frame_ack,
         },
     };
     esp_lcd_rpi_dsi_vendor_config_t vendor_config = {
